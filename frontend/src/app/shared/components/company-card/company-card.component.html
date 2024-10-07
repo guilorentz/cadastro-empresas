@@ -1,0 +1,11 @@
+<div class="company-card">
+  <h3 class="company-card__name">{{ company.name }}</h3>
+  <p class="company-card__cnpj">CNPJ: {{ company.cnpj }}</p>
+  <p class="company-card__address">Endereço: {{ company.address }}</p>
+  <p class="company-card__phone">Telefone: {{ company.phone }}</p>
+  <p class="company-card__email">Email: {{ company.email }}</p>
+  <div class="company-card__actions">
+    <app-button type="secondary" (buttonClick)="onEdit()">Editar</app-button>
+    <app-button type="secondary" (buttonClick)="onDelete()">Excluir</app-button>
+  </div>
+</div>

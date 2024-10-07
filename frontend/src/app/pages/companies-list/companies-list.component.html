@@ -1,1 +1,15 @@
-<p>companies-list works!</p>
+<div class="company-list">
+  <div class="company-list__header">
+    <app-button type="primary" (buttonClick)="addCompany()"
+      >Adicionar Nova Empresa</app-button
+    >
+  </div>
+  <div class="company-list__grid">
+    <app-company-card
+      *ngFor="let company of companies"
+      [company]="company"
+      (edit)="editCompany($event)"
+      (delete)="deleteCompany($event)"
+    ></app-company-card>
+  </div>
+</div>
