@@ -1,13 +1,24 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { AuthService } from './shared/services/auth.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [CommonModule, RouterOutlet, RouterLink],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'frontend';
+  constructor(public authService: AuthService, private router: Router) {}
+
+  ngOnInit() {
+    this.authService.checkAuthStatus();
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 }

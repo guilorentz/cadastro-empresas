@@ -1,0 +1,31 @@
+<div class="login-wrapper">
+  <div class="login-container">
+    <h2>Cadastro de Empresas</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">Usuário</label>
+        <input
+          type="text"
+          id="username"
+          [(ngModel)]="username"
+          name="username"
+          placeholder="Digite seu usuário"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input
+          type="password"
+          id="password"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="Digite sua senha"
+          required
+        />
+      </div>
+      <app-button type="primary" (buttonClick)="onSubmit()">Entrar</app-button>
+    </form>
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  </div>
+</div>
