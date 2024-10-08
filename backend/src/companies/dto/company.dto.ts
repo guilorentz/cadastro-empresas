@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString, IsEmail } from 'class-validator';
-import { IsCNPJ } from 'src/utils/cnpj.decorator';
+import { IsCNPJ } from '../../utils/cnpj.decorator';
 
 export class CreateCompanyDto {
   @IsNotEmpty()
