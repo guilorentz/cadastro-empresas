@@ -22,4 +22,8 @@ export class AppComponent {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
+
+  shouldShowHeader(): boolean {
+    return this.router.url !== '/login';
+  }
 }

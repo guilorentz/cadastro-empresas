@@ -1,4 +1,7 @@
-<header *ngIf="authService.isAuthenticated()" class="header">
+<header
+  *ngIf="authService.isAuthenticated() && shouldShowHeader()"
+  class="header"
+>
   <h1 class="header__title">Gerenciamento de Empresas</h1>
   <app-button type="primary" (buttonClick)="logout()">Sair</app-button>
 </header>
