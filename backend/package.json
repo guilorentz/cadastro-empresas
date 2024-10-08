@@ -18,6 +18,7 @@
     "prisma:migrate:reset": "prisma migrate reset",
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
+    "seed": "ts-node prisma/seed.ts",
     "test": "jest",
     "studio": "prisma studio",
     "test:watch": "jest --watch",
