@@ -1,14 +1,18 @@
 <div class="overlay">
   <div class="dialog">
-    <h2>Confirmação</h2>
+    <h2>{{ title }}</h2>
     <p>{{ message }}</p>
     <div class="actions">
-      <app-button type="secondary" (buttonClick)="onCancel()"
-        >Cancelar</app-button
+      <app-button type="secondary" (buttonClick)="onCancel()">
+        {{ cancelMessage }}
+      </app-button>
+      <app-button
+        *ngIf="confirmMessage"
+        type="primary"
+        (buttonClick)="onConfirm()"
       >
-      <app-button type="primary" (buttonClick)="onConfirm()"
-        >Excluir</app-button
-      >
+        {{ confirmMessage }}
+      </app-button>
     </div>
   </div>
 </div>

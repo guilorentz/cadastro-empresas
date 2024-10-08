@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { cnpjValidator } from '../../../../shared/validators/cnpj.validator';
+import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-company-form',
@@ -28,6 +29,7 @@ import { cnpjValidator } from '../../../../shared/validators/cnpj.validator';
     ButtonComponent,
     NgxMaskDirective,
     NgxMaskPipe,
+    ConfirmDialogComponent,
   ],
   templateUrl: './company-form.component.html',
   styleUrl: './company-form.component.scss',
@@ -35,6 +37,7 @@ import { cnpjValidator } from '../../../../shared/validators/cnpj.validator';
 export class CompanyFormComponent implements OnInit, OnChanges {
   @Input() company: Company | null = null;
   companyForm: FormGroup;
+  showConfirmDialog: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -53,7 +56,6 @@ export class CompanyFormComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.company);
     if (changes['company'] && changes['company'].currentValue) {
       this.companyForm.patchValue({
         name: this.company?.name || '',
@@ -70,23 +72,36 @@ export class CompanyFormComponent implements OnInit, OnChanges {
       return;
     }
 
-    console.log(this.companyForm.value);
-
     const companyData: Company = this.companyForm.value;
+    const observer = {
+      next: () => {
+        this.router.navigate(['/companies']);
+      },
+      error: (error: any) => {
+        if (
+          error.status === 400 &&
+          error.error.message === 'CNPJ is already registered'
+        ) {
+          this.showConfirmDialog = true;
+        }
+      },
+    };
+
     if (this.company?.id) {
       this.companyService
         .updateCompany(this.company.id, companyData)
-        .subscribe(() => {
-          this.router.navigate(['/companies']);
-        });
+        .subscribe(observer);
     } else {
-      this.companyService.addCompany(companyData).subscribe(() => {
-        this.router.navigate(['/companies']);
-      });
+      this.companyService.addCompany(companyData).subscribe(observer);
     }
   }
 
   onBack(): void {
     this.router.navigate(['/companies']);
+  }
+
+  closeDialog(): void {
+    this.showConfirmDialog = false;
+    this.companyForm.get('cnpj')?.reset();
   }
 }

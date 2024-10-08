@@ -19,6 +19,7 @@
   <app-confirm-dialog
     *ngIf="showConfirmDialog"
     [message]="'Tem certeza que deseja excluir esta empresa?'"
+    [confirmMessage]="'Excluir'"
     (confirm)="confirmDelete()"
     (cancel)="cancelDelete()"
   ></app-confirm-dialog>

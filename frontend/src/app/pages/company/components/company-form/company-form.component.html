@@ -99,3 +99,10 @@
     >
   </div>
 </form>
+
+<app-confirm-dialog
+  *ngIf="showConfirmDialog"
+  [title]="'Erro ao cadastrar'"
+  [message]="'CNPJ já está cadastrado. Por favor, verifique e tente novamente.'"
+  (cancel)="closeDialog()"
+></app-confirm-dialog>

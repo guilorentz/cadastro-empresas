@@ -10,7 +10,10 @@ import { ButtonComponent } from '../button/button.component';
   styleUrls: ['./confirm-dialog.component.scss'],
 })
 export class ConfirmDialogComponent {
+  @Input() title: string = 'Confirmação';
   @Input() message: string = '';
+  @Input() confirmMessage: string = '';
+  @Input() cancelMessage: string = 'Cancelar';
   @Output() confirm = new EventEmitter<void>();
   @Output() cancel = new EventEmitter<void>();
 
