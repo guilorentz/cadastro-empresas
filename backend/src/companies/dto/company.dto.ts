@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsString, IsEmail, Matches } from 'class-validator';
+import { IsNotEmpty, IsString, IsEmail } from 'class-validator';
+import { IsCNPJ } from 'src/utils/cnpj.decorator';
 
 export class CreateCompanyDto {
   @IsNotEmpty()
@@ -6,9 +7,7 @@ export class CreateCompanyDto {
   name: string;
 
   @IsNotEmpty()
-  @Matches(/^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/, {
-    message: 'Invalid CNPJ format',
-  })
+  @IsCNPJ()
   cnpj: string;
 
   @IsNotEmpty()
