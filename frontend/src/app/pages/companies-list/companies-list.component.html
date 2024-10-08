@@ -12,4 +12,11 @@
       (delete)="deleteCompany($event)"
     ></app-company-card>
   </div>
+
+  <app-confirm-dialog
+    *ngIf="showConfirmDialog"
+    [message]="'Tem certeza que deseja excluir esta empresa?'"
+    (confirm)="confirmDelete()"
+    (cancel)="cancelDelete()"
+  ></app-confirm-dialog>
 </div>

@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { CompanyCardComponent } from '../../shared/components/company-card/company-card.component';
 import { Router } from '@angular/router';
+import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-companies-list',
@@ -14,12 +15,15 @@ import { Router } from '@angular/router';
     HttpClientModule,
     ButtonComponent,
     CompanyCardComponent,
+    ConfirmDialogComponent,
   ],
   templateUrl: './companies-list.component.html',
   styleUrl: './companies-list.component.scss',
 })
 export class CompaniesListComponent implements OnInit {
   companies: any[] = [];
+  showConfirmDialog: boolean = false;
+  companyIdToDelete: number | null = null;
 
   constructor(private companyService: CompanyService, private router: Router) {}
 
@@ -37,5 +41,27 @@ export class CompaniesListComponent implements OnInit {
     this.router.navigate([`/companies/edit/${companyId}`]);
   }
 
-  deleteCompany(companyId: number) {}
+  deleteCompany(companyId: number) {
+    this.companyIdToDelete = companyId;
+    this.showConfirmDialog = true;
+  }
+
+  confirmDelete() {
+    if (this.companyIdToDelete !== null) {
+      this.companyService
+        .deleteCompany(this.companyIdToDelete)
+        .subscribe(() => {
+          this.companies = this.companies.filter(
+            (company) => company.id !== this.companyIdToDelete
+          );
+          this.showConfirmDialog = false;
+          this.companyIdToDelete = null;
+        });
+    }
+  }
+
+  cancelDelete() {
+    this.showConfirmDialog = false;
+    this.companyIdToDelete = null;
+  }
 }

@@ -10,6 +10,7 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
-    provideEnvironmentNgxMask(), provideAnimationsAsync(),
+    provideEnvironmentNgxMask(),
+    provideAnimationsAsync(),
   ],
 }).catch((err) => console.error(err));
