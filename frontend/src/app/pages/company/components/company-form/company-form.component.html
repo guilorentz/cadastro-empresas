@@ -1,0 +1,101 @@
+<form [formGroup]="companyForm" (ngSubmit)="onSubmit()" class="company-form">
+  <div class="company-form__group">
+    <label for="name" class="company-form__label">Nome</label>
+    <input
+      id="name"
+      formControlName="name"
+      type="text"
+      class="company-form__input"
+    />
+    <div
+      *ngIf="
+        companyForm.get('name')?.invalid && companyForm.get('name')?.touched
+      "
+      class="company-form__error"
+    >
+      Nome é obrigatório.
+    </div>
+  </div>
+
+  <div class="company-form__group">
+    <label for="cnpj" class="company-form__label">CNPJ</label>
+    <input
+      id="cnpj"
+      formControlName="cnpj"
+      type="text"
+      mask="00.000.000/0000-00"
+      class="company-form__input"
+    />
+    <div
+      *ngIf="
+        companyForm.get('cnpj')?.invalid && companyForm.get('cnpj')?.touched
+      "
+      class="company-form__error"
+    >
+      CNPJ inválido.
+    </div>
+  </div>
+
+  <div class="company-form__group">
+    <label for="address" class="company-form__label">Endereço</label>
+    <input
+      id="address"
+      formControlName="address"
+      type="text"
+      class="company-form__input"
+    />
+    <div
+      *ngIf="
+        companyForm.get('address')?.invalid &&
+        companyForm.get('address')?.touched
+      "
+      class="company-form__error"
+    >
+      Endereço é obrigatório.
+    </div>
+  </div>
+
+  <div class="company-form__group">
+    <label for="phone" class="company-form__label">Telefone</label>
+    <input
+      id="phone"
+      formControlName="phone"
+      type="tel"
+      mask="(00) 00000-0000 || (00) 0000-0000 || 0000-0000 || 00000-0000"
+      class="company-form__input"
+    />
+    <div
+      *ngIf="
+        companyForm.get('phone')?.invalid && companyForm.get('phone')?.touched
+      "
+      class="company-form__error"
+    >
+      Telefone inválido.
+    </div>
+  </div>
+
+  <div class="company-form__group">
+    <label for="email" class="company-form__label">Email</label>
+    <input
+      id="email"
+      formControlName="email"
+      type="email"
+      class="company-form__input"
+    />
+    <div
+      *ngIf="
+        companyForm.get('email')?.invalid && companyForm.get('email')?.touched
+      "
+      class="company-form__error"
+    >
+      Email inválido.
+    </div>
+  </div>
+
+  <div class="company-form__actions">
+    <app-button type="secondary" (buttonClick)="onBack()">Voltar</app-button>
+    <app-button type="primary" [disabled]="companyForm.invalid"
+      >Salvar</app-button
+    >
+  </div>
+</form>

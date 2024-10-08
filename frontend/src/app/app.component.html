@@ -1,5 +1,5 @@
 <header *ngIf="authService.isAuthenticated()" class="header">
   <h1 class="header__title">Gerenciamento de Empresas</h1>
-  <app-button type="tertiary" (buttonClick)="logout()">Sair</app-button>
+  <app-button type="primary" (buttonClick)="logout()">Sair</app-button>
 </header>
 <router-outlet></router-outlet>

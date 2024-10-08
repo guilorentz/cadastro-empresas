@@ -1,8 +1,16 @@
 <div class="company-card">
   <h3 class="company-card__name">{{ company.name }}</h3>
-  <p class="company-card__cnpj">CNPJ: {{ company.cnpj }}</p>
+  <p class="company-card__cnpj">
+    CNPJ: {{ company.cnpj | mask : "00.000.000/0000-00" }}
+  </p>
   <p class="company-card__address">Endereço: {{ company.address }}</p>
-  <p class="company-card__phone">Telefone: {{ company.phone }}</p>
+  <p class="company-card__phone">
+    Telefone:
+    {{
+      company.phone
+        | mask : "(00) 00000-0000 || (00) 0000-0000 || 0000-0000 || 00000-0000"
+    }}
+  </p>
   <p class="company-card__email">Email: {{ company.email }}</p>
   <div class="company-card__actions">
     <app-button type="secondary" (buttonClick)="onEdit()">Editar</app-button>

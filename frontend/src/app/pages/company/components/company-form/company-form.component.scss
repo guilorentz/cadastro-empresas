@@ -1,0 +1,48 @@
+.company-form {
+  &__group {
+    margin-bottom: 1rem;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+  }
+
+  &__error {
+    color: #dc3545;
+    margin-top: 0.5rem;
+    font-size: 14px;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+
+    app-button {
+      flex-basis: 48%;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .company-form__input,
+  button {
+    font-size: 14px;
+  }
+}
