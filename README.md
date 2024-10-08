@@ -1,4 +1,3 @@
-````markdown
 # 📊 Aplicação de Cadastro de Empresas
 
 Este projeto é uma aplicação completa para o cadastro, visualização, edição e exclusão de empresas. A aplicação é composta por um backend desenvolvido em Node.js com Nest.js e um frontend desenvolvido em Angular. O backend utiliza Prisma ORM para manipulação de dados e MySQL como banco de dados.
@@ -28,7 +27,7 @@ Certifique-se de ter o Node.js, Docker e Angular CLI instalados em sua máquina.
 cd backend
 npm install
 ```
-````
+
 
 #### Frontend
 
@@ -135,8 +134,4 @@ Para mais informações, entre em contato através do [go.lorentz@gmail.com](mai
 
 ---
 
-Esperamos que você goste de usar a aplicação! Se tiver alguma dúvida ou sugestão, fique à vontade para me contactar. 🚀
-
-```
-
-```
+Se tiver alguma dúvida ou sugestão, fique à vontade para me contactar. 🚀
