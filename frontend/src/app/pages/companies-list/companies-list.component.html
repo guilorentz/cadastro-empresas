@@ -1,8 +1,11 @@
 <div class="company-list">
   <div class="company-list__header">
-    <app-button type="tertiary" (buttonClick)="addCompany()"
-      >Adicionar Nova Empresa</app-button
+    <app-expandable-button
+      svgPath="assets/images/plus.svg"
+      text="Adicionar Nova Empresa"
+      (buttonClick)="addCompany()"
     >
+    </app-expandable-button>
   </div>
   <div class="company-list__grid">
     <app-company-card

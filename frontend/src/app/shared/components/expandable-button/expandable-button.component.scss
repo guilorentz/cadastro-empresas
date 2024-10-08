@@ -1,0 +1,50 @@
+.expandable-button {
+  font-family: "Rubik";
+  border: 2px solid transparent;
+  border-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: rgba(165, 3, 255, 1); /* Cor do texto */
+  overflow: hidden;
+  white-space: nowrap;
+  width: auto;
+
+  &:hover {
+    background: #fff;
+  }
+
+  &__icon {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__text {
+    color: rgba(165, 3, 255, 1);
+    opacity: 0;
+    max-width: 0;
+    transition: opacity 0.3s, max-width 0.3s;
+    display: inline-block;
+    overflow: hidden;
+
+    .expandable-button:hover & {
+      opacity: 1;
+      max-width: 200px;
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}

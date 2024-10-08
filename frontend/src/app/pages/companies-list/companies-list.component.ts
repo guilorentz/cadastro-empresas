@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { CompanyCardComponent } from '../../shared/components/company-card/company-card.component';
 import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
+import { ExpandableButtonComponent } from '../../shared/components/expandable-button/expandable-button.component';
 
 @Component({
   selector: 'app-companies-list',
@@ -14,6 +15,7 @@ import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/c
     CommonModule,
     HttpClientModule,
     ButtonComponent,
+    ExpandableButtonComponent,
     CompanyCardComponent,
     ConfirmDialogComponent,
   ],
