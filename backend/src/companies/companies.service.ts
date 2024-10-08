@@ -17,6 +17,14 @@ export class CompaniesService {
   }
 
   async create(data: Prisma.CompanyCreateInput): Promise<Company> {
+    const existingCompany = await this.prisma.company.findUnique({
+      where: { cnpj: data.cnpj },
+    });
+
+    if (existingCompany) {
+      throw new Error('CNPJ is already registered');
+    }
+
     return this.prisma.company.create({ data });
   }
 

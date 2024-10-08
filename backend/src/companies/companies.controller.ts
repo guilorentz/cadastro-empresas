@@ -7,6 +7,7 @@ import {
   Body,
   Param,
   ValidationPipe,
+  BadRequestException,
 } from '@nestjs/common';
 import { CompaniesService } from './companies.service';
 import { CreateCompanyDto, UpdateCompanyDto } from './dto/company.dto';
@@ -27,7 +28,11 @@ export class CompaniesController {
 
   @Post()
   async create(@Body(ValidationPipe) createCompanyDto: CreateCompanyDto) {
-    return this.companiesService.create(createCompanyDto);
+    try {
+      return await this.companiesService.create(createCompanyDto);
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
   }
 
   @Put(':id')
