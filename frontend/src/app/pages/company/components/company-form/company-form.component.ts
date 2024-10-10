@@ -102,6 +102,5 @@ export class CompanyFormComponent implements OnInit, OnChanges {
 
   closeDialog(): void {
     this.showConfirmDialog = false;
-    this.companyForm.get('cnpj')?.reset();
   }
 }

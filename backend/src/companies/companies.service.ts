@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { Company } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
-import { Company, Prisma } from '@prisma/client';
+import { CreateCompanyDto, UpdateCompanyDto } from './dto/company.dto';
 
 @Injectable()
 export class CompaniesService {
@@ -16,7 +17,7 @@ export class CompaniesService {
     });
   }
 
-  async create(data: Prisma.CompanyCreateInput): Promise<Company> {
+  async create(data: CreateCompanyDto): Promise<Company> {
     const existingCompany = await this.prisma.company.findUnique({
       where: { cnpj: data.cnpj },
     });
@@ -28,7 +29,15 @@ export class CompaniesService {
     return this.prisma.company.create({ data });
   }
 
-  async update(id: number, data: Prisma.CompanyUpdateInput): Promise<Company> {
+  async update(id: number, data: UpdateCompanyDto): Promise<Company> {
+    const existingCompany = await this.prisma.company.findUnique({
+      where: { cnpj: data.cnpj },
+    });
+
+    if (existingCompany && existingCompany.id !== id) {
+      throw new Error('CNPJ is already registered');
+    }
+
     return this.prisma.company.update({
       where: { id },
       data,

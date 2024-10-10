@@ -40,7 +40,11 @@ export class CompaniesController {
     @Param('id') id: string,
     @Body(ValidationPipe) updateCompanyDto: UpdateCompanyDto,
   ) {
-    return this.companiesService.update(Number(id), updateCompanyDto);
+    try {
+      return await this.companiesService.update(Number(id), updateCompanyDto);
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
   }
 
   @Delete(':id')
